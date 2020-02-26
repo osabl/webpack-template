@@ -3,11 +3,17 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const buildWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
-
-  output: {
-    filename: `${baseWebpackConfig.externals.paths.assets}js/[name].[hash].js`,
-    path: baseWebpackConfig.externals.paths.dist,
-    publicPath: '/'
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'vendors',
+          test: /node_modules/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
   }
 })
 

@@ -6,16 +6,14 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const devWebpackConfig = {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
-  output: {
-    filename: `${baseWebpackConfig.externals.paths.assets}js/[name].js`,
-    path: baseWebpackConfig.externals.paths.dist,
-    publicPath: '/'
-  },
   devServer: {
     contentBase: baseWebpackConfig.externals.paths.dist,
     host: getMyIpV4Address(ifaces),
     port: '8081',
-    overlay: true
+    overlay: {
+      warnings: true,
+      errors: true
+    }
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin({
