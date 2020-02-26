@@ -31,19 +31,6 @@ module.exports = {
     publicPath: '/'
   },
 
-  // optimization: {
-  //     splitChunks: {
-  //       cacheGroups: {
-  //         vendor: {
-  //           name: 'vendors',
-  //           test: /node_modules/,
-  //           chunks: 'all',
-  //           enforce: true
-  //         }
-  //       }
-  //     }
-  //   },
-
   module: {
     rules: [{
       test: /\.pug$/,
@@ -66,10 +53,15 @@ module.exports = {
         }
       }
     }, {
-      test: /\.scss$/,
+      test: /\.(sa|sc|c)ss$/,
       use: [
         'style-loader',
-        MiniCssExtractPlugin.loader,
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: isDevMode
+          }
+        },
         {
           loader: 'css-loader',
           options: {
@@ -87,26 +79,6 @@ module.exports = {
           loader: 'sass-loader',
           options: {
             sourceMap: true
-          }
-        }
-      ]
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true,
-            config: {
-              path: './webpack/postcss.config.js'
-            }
           }
         }
       ]
