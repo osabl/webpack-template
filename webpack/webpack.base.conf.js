@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const isDevMode = process.env.NODE_ENV !== 'production'
+
 // Main const
 const PATHS = {
   src: path.resolve(__dirname, '../src'),
@@ -22,6 +24,11 @@ module.exports = {
   },
   entry: {
     index: `${PATHS.src}/index.js`
+  },
+  output: {
+    filename: isDevMode ? `${PATHS.assets}js/[name].js` : `${PATHS.assets}js/[name].[hash].js`,
+    path: PATHS.dist,
+    publicPath: '/'
   },
 
   // optimization: {
@@ -113,7 +120,7 @@ module.exports = {
       filename: `./${page.replace(/\.pug/, '.html')}`
     })),
     new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].[hash].css`
+      filename: isDevMode ? `${PATHS.assets}css/[name].css` : `${PATHS.assets}css/[name].[hash].css`
     }),
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
