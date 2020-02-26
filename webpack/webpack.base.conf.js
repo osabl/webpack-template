@@ -107,6 +107,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       filename: `./${page.replace(/\.pug/, '.html')}`
@@ -114,13 +115,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[hash].css`
     }),
-    new CopyWebpackPlugin([{
-      from: `${PATHS.src}/img`,
-      to: `${PATHS.assets}/img`
-    }, {
-      from: `${PATHS.src}/static`,
-      to: ''
-    }]),
-    new CleanWebpackPlugin()
+    new CopyWebpackPlugin([
+      { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
+      { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
+      { from: `${PATHS.src}/static`, to: '' }
+    ])
   ]
 }
