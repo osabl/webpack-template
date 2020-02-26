@@ -107,11 +107,10 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      hash: false,
-      template: `${PATHS.src}/index.html`,
-      filename: './index.html'
-    }),
+    ...PAGES.map(page => new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/${page}`,
+      filename: `./${page.replace(/\.pug/,'.html')}`
+    })),
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[hash].css`
     }),
