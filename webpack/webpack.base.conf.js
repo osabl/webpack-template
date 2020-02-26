@@ -1,14 +1,20 @@
 const path = require('path')
+const fs = require('fs')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+// Main const
 const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
   assets: 'assets/'
 }
+
+// Pages const for HtmlWebpackPlugin
+const PAGES_DIR = `${PATHS.src}/pug/pages/`
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
 module.exports = {
   externals: {
@@ -33,6 +39,9 @@ module.exports = {
 
   module: {
     rules: [{
+      test: /\.pug$/,
+      use: 'pug-loader'
+    }, {
       test: /\.(png|jpg|gif|svg)$/,
       use: {
         loader: 'file-loader',
