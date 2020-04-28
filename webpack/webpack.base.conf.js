@@ -11,6 +11,7 @@ const isDevMode = process.env.NODE_ENV !== 'production'
 const PATHS = {
   src: path.resolve(__dirname, '../src'),
   dist: path.resolve(__dirname, '../dist'),
+  distDev: path.resolve(__dirname, '../dev'),
   assets: 'assets/'
 }
 
@@ -26,8 +27,8 @@ module.exports = {
     index: `${PATHS.src}/index.js`
   },
   output: {
-    filename: isDevMode ? `${PATHS.assets}js/[name].js` : `${PATHS.assets}js/[name].[hash].js`,
-    path: PATHS.dist,
+    filename: isDevMode ? 'js/[name].js' : `${PATHS.assets}js/[name].[hash].js`,
+    path: isDevMode ? PATHS.distDev : PATHS.dist,
     publicPath: '/'
   },
 
@@ -98,7 +99,7 @@ module.exports = {
       filename: `./${page.replace(/\.pug/, '.html')}`
     })),
     new MiniCssExtractPlugin({
-      filename: isDevMode ? `${PATHS.assets}css/[name].css` : `${PATHS.assets}css/[name].[hash].css`
+      filename: isDevMode ? 'css/[name].css' : `${PATHS.assets}css/[name].[hash].css`
     }),
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
