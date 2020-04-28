@@ -2,4 +2,4 @@
 // import './js/index.js'
 
 // SCSS
-// import './assets/scss/main.scss'
+// import './scss/main.scss'
