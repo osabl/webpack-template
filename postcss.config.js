@@ -7,7 +7,8 @@ module.exports = {
         'default', {
           discardComments: {
             removeAll: true
-          }
+          },
+          normalizeWhitespace: process.env.NODE_ENV === 'production'
         }
       ]
     })

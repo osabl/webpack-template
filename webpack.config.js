@@ -4,6 +4,7 @@ const ifaces = require('os').networkInterfaces()
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
@@ -27,7 +28,22 @@ const plugins = () => {
     new CleanWebpackPlugin(),
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PATHS.pages}/${page}`,
-      filename: `./${page.replace(/\.pug/, '.html')}`
+      filename: `./${page.replace(/\.pug/, '.html')}`,
+      minify: {
+        html5: isProdMode,
+        collapseWhitespace: isProdMode,
+        minifyCSS: isProdMode,
+        minifyJS: isProdMode,
+        minifyURLs: false,
+        removeAttributeQuotes: isProdMode,
+        removeComments: isProdMode,
+        removeEmptyAttributes: isProdMode,
+        removeOptionalTags: isProdMode,
+        removeRedundantAttributes: isProdMode,
+        removeScriptTypeAttributes: isProdMode,
+        removeStyleLinkTypeAttributese: isProdMode,
+        useShortDoctype: isProdMode
+      }
     })),
     new MiniCssExtractPlugin({
       filename: isDevMode ? 'css/[name].css' : `${PATHS.assets}css/[name].[hash].css`
@@ -43,7 +59,8 @@ const plugins = () => {
     arr.push(
       new webpack.SourceMapDevToolPlugin({
         filename: '[file].map'
-      })
+      }),
+      new HtmlBeautifyPlugin()
     )
   } else {
     arr.push(
