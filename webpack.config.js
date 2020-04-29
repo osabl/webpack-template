@@ -118,7 +118,10 @@ module.exports = {
   module: {
     rules: [{
       test: /\.pug$/,
-      use: 'pug-loader'
+      use: [
+        'html-loader',
+        'pug-html-loader'
+      ]
     }, {
       test: /\.(png|jpg|gif|svg)$/,
       use: {
