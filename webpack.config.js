@@ -127,14 +127,14 @@ module.exports = {
       use: {
         loader: 'file-loader',
         options: {
-          name: isDevMode ? `${PATHS.assets}/img/[name].[ext]` : `${PATHS.assets}/img/[name].[hash].[ext]`
+          name: isDevMode ? `${PATHS.assets}img/[name].[ext]` : `${PATHS.assets}img/[name].[hash].[ext]`
         }
       }
     }, {
       test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
-        name: `${PATHS.assets}/fonts/[name].[ext]`
+        name: `${PATHS.assets}fonts/[name].[ext]`
       }
     }, {
       test: /\.js$/,
