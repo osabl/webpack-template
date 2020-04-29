@@ -96,9 +96,9 @@ const optimization = () => {
 
 module.exports = {
   context: PATHS.src,
-  entry: {
-    index: `${PATHS.src}/index.js`
-  },
+  entry: [
+    'regenerator-runtime/runtime', `${PATHS.src}/index.js`
+  ],
   output: {
     filename: isDevMode ? 'js/[name].js' : `${PATHS.assets}js/[name].[hash].js`,
     path: isDevMode ? PATHS.distDev : PATHS.dist,
