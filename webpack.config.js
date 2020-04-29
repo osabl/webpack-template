@@ -95,6 +95,7 @@ const optimization = () => {
 }
 
 module.exports = {
+  context: PATHS.src,
   entry: {
     index: `${PATHS.src}/index.js`
   },
@@ -127,14 +128,14 @@ module.exports = {
       use: {
         loader: 'file-loader',
         options: {
-          name: isDevMode ? `${PATHS.assets}img/[name].[ext]` : `${PATHS.assets}img/[name].[hash].[ext]`
+          name: isDevMode ? '[path][name].[ext]' : '[path][name].[hash].[ext]'
         }
       }
     }, {
       test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader',
       options: {
-        name: `${PATHS.assets}fonts/[name].[ext]`
+        name: '[path][name].[ext]'
       }
     }, {
       test: /\.js$/,
