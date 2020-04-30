@@ -40,21 +40,23 @@ npm run stats
 ```
 
 ## Project Structure:
-> `src/` - project root
-> `+-- assets/` assets folder
-> `|   +-- img/` - put images here.
-> `|   +-- fonts/` - put fonts here.
-> `|   +-- .../`  - and other assets. 
-> `+-- js/` - put custom app scripts here
-> `+-- pug/`
-> `|   +-- layout/` - put custom layout for pages
-> `|   +-- includes/` - all app includes
-> `|   +-- utils/` - pug mixins and other
-> `|   +-- pages/` - put custom app pages.
-> `+-- scss/`- put custom app SCSS styles here. Don't forget to import them in `index.js`
-> `|   +-- utils/` - scss mixins and other
-> `+-- static/` - folder with extra static assets that will be copied into output folder
-> `+-- index.js` - main app file where you include/import all required libs and init app
+``` js
+`src/`  // project root
+`├── assets/`  // assets folder
+`|   ├── img/`  // put images here.
+`|   ├── fonts/`  // put fonts here.
+`|   └── .../`  // and other assets. 
+`├── js/`  // put custom app scripts here
+`├── pug/`
+`|   ├── layout/`  // put custom layout for pages
+`|   ├── includes/`  // all app includes
+`|   ├── utils/`  // pug mixins and other
+`|   └── pages/`  // put custom app pages.
+`├── scss/`  // put custom app SCSS styles here. Don't forget to import them in `index.js`
+`|   └── utils/`  // scss mixins and other
+`├── static/`  // folder with extra static assets that will be copied into output folder
+`└── index.js`  // main app file where you include/import all required libs and init app
+```
 
 # Setting
 
