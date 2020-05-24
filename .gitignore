@@ -2,7 +2,7 @@
 /node_modules/
 /package-lock.json
 /.git/
-/dev/
+/dist/
 *.map
 /notes/
 stats.json

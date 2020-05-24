@@ -15,7 +15,6 @@ const isProdMode = !isDevMode
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
   dist: path.resolve(__dirname, 'dist'),
-  distDev: path.resolve(__dirname, 'dev'),
   assets: 'assets/',
   pages: path.resolve(__dirname, 'src/pug/pages')
 }
@@ -101,12 +100,12 @@ module.exports = {
   ],
   output: {
     filename: isDevMode ? 'js/[name].js' : `${PATHS.assets}js/[name].[hash].js`,
-    path: isDevMode ? PATHS.distDev : PATHS.dist,
+    path: PATHS.dist,
     publicPath: '/'
   },
   devtool: isDevMode ? 'eval-cheap-module-source-map' : '',
   devServer: {
-    contentBase: PATHS.distDev,
+    contentBase: PATHS.dist,
     host: getMyIpV4Address(ifaces),
     port: '8081',
     overlay: {

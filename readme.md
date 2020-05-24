@@ -68,9 +68,7 @@ const PATHS = {
   // Path to main app dir
   src: path.join(__dirname, 'src'),
   // Path to Output dir (production mode)
-  dist: path.join(__dirname, 'dist'),
-  // Path to Output dir (developer mode)
-  distDev: path.resolve(__dirname, 'dev'),
+  dist: path.join(__dirname, 'dist')
   // Path to Second Output dir (js/css/fonts etc folder)
   assets: 'assets/',
   // Path to your custom app pages
